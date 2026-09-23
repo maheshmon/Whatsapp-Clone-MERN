@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "nodemon index.js",
-    "build": "npm i"
+    "build": "npm i",
+    "clear-chats": "node clear-data.js",
+    "reset-db": "node clear-data.js --all"
   },
   "author": "",
   "license": "ISC",

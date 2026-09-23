@@ -1,14 +1,15 @@
 import { Drawer, Box, Typography, styled } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 
-// components 
+// components
 import Profile from "./Profile";
 
 const Header = styled(Box)`
-  background: #008069;
+  background: linear-gradient(135deg, #f48fb1 0%, #ec407a 50%, #e91e63 100%);
   height: 107px;
   color: #ffffff;
   display: flex;
+  box-shadow: 0 2px 10px rgba(233, 30, 99, 0.2);
   & > svg,
   & > p {
     margin-top: auto;
@@ -18,7 +19,7 @@ const Header = styled(Box)`
 `;
 
 const Component = styled(Box)`
-  background: #ededed;
+  background: #fff0f5;
   height: 85%;
 `;
 
@@ -31,11 +32,13 @@ const drawerSyle = {
   top: 17,
   height: "95%",
   width: "30%",
-  boxShadow: "none",
+  minWidth: "320px",
+  boxShadow: "0 8px 30px rgba(233, 30, 99, 0.2)",
+  borderRadius: "10px",
+  overflow: "hidden",
 };
 
 const InfoDrawer = ({ open, setOpen }) => {
-  // {open: true, setOpen: function, .... 100} = props
   const handleClose = () => {
     setOpen(false);
   };
@@ -48,13 +51,13 @@ const InfoDrawer = ({ open, setOpen }) => {
     >
       {/* upper part  */}
       <Header>
-        <ArrowBack onClick={() => setOpen(false)} />
+        <ArrowBack sx={{ cursor: "pointer" }} onClick={() => setOpen(false)} />
         <Text>Profile</Text>
       </Header>
 
       {/* lower part  */}
       <Component>
-        <Profile/>
+        <Profile />
       </Component>
     </Drawer>
   );

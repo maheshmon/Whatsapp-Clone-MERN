@@ -22,3 +22,23 @@ export const getMessages = async (request, response) => {
         return response.status(500).json(error.message);
     }
 }
+
+export const clearConversationMessages = async (request, response) => {
+    try {
+        await Message.deleteMany({ conversationId: request.params.id });
+        await Conversation.findByIdAndUpdate(request.params.id, { message: "" });
+        return response.status(200).json({ message: "Conversation messages cleared successfully" });
+    } catch (error) {
+        return response.status(500).json(error.message);
+    }
+}
+
+export const clearAllMessages = async (request, response) => {
+    try {
+        await Message.deleteMany({});
+        await Conversation.deleteMany({});
+        return response.status(200).json({ message: "All messages and conversations cleared successfully" });
+    } catch (error) {
+        return response.status(500).json(error.message);
+    }
+}

@@ -28,15 +28,17 @@ const Component = styled(Box)`
 `;
 
 const QRCode = styled("img")({
-  height: "240px",
-  width: "240px",
-  margin: "40px 0 0 100px",
+  height: "230px",
+  width: "230px",
+  borderRadius: "10px",
+  border: "2px solid #f8bbd0",
+  boxShadow: "0 4px 12px rgba(233, 30, 99, 0.1)",
 });
 
 const Title = styled(Typography)`
   font-size: 24px;
-  color: #3b4a54;
-  font-weight: 500;
+  color: #4a1525;
+  font-weight: 600;
   margin-bottom: 20px;
 `;
 
@@ -46,7 +48,7 @@ const StyledList = styled(List)`
     margin-top: 12px;
     font-size: 16px;
     line-height: 26px;
-    color: #4a4a4a;
+    color: #5c2435;
   }
 `;
 
@@ -55,6 +57,7 @@ const LeftContainer = styled(Box)`
   padding: 40px;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 `;
 
 const RightContainer = styled(Box)`
@@ -64,8 +67,8 @@ const RightContainer = styled(Box)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
-  border-left: 1px solid #f0f2f5;
+  background-color: #fff5f8;
+  border-left: 1px solid #f8bbd0;
 `;
 
 const dialogstyle = {
@@ -74,8 +77,9 @@ const dialogstyle = {
   width: "950px",
   maxWidth: "95%",
   maxHeight: "650px",
-  borderRadius: "8px",
-  boxShadow: "0 17px 50px 0 rgba(11,20,26,.19), 0 12px 15px 0 rgba(11,20,26,.24)",
+  borderRadius: "14px",
+  boxShadow: "0 16px 44px rgba(233, 30, 99, 0.22)",
+  border: "1px solid #f8bbd0",
   overflow: "hidden",
 };
 
@@ -184,7 +188,7 @@ const LoginDialog = () => {
       <Component>
         {/* Left Side: Auth Forms & Instructions */}
         <LeftContainer>
-          <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 3 }}>
+          <Box sx={{ borderBottom: 1, borderColor: "#fce4ec", mb: 3 }}>
             <Tabs
               value={activeTab}
               onChange={(e, val) => setActiveTab(val)}
@@ -195,12 +199,14 @@ const LoginDialog = () => {
                   textTransform: "none",
                   fontWeight: 600,
                   fontSize: 15,
+                  color: "#ad1457",
                 },
                 "& .Mui-selected": {
-                  color: "#00a884",
+                  color: "#e91e63 !important",
                 },
                 "& .MuiTabs-indicator": {
-                  backgroundColor: "#00a884",
+                  backgroundColor: "#e91e63",
+                  height: 3,
                 },
               }}
             >
@@ -226,6 +232,10 @@ const LoginDialog = () => {
                 required
                 value={loginEmail}
                 onChange={(e) => setLoginEmail(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <TextField
@@ -237,6 +247,10 @@ const LoginDialog = () => {
                 required
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <Button
@@ -244,24 +258,25 @@ const LoginDialog = () => {
                 variant="contained"
                 disabled={loginLoading}
                 sx={{
-                  backgroundColor: "#00a884",
-                  "&:hover": { backgroundColor: "#008f6f" },
+                  backgroundColor: "#e91e63",
+                  "&:hover": { backgroundColor: "#d81b60" },
                   textTransform: "none",
                   py: 1,
                   fontSize: 15,
                   fontWeight: 600,
                   mt: 1,
+                  boxShadow: "0 4px 12px rgba(233, 30, 99, 0.25)",
                 }}
               >
                 {loginLoading ? <CircularProgress size={24} color="inherit" /> : "Sign In"}
               </Button>
 
-              <Typography variant="body2" sx={{ color: "#667781", textAlign: "center", mt: 1 }}>
+              <Typography variant="body2" sx={{ color: "#753447", textAlign: "center", mt: 1 }}>
                 Don't have an account?{" "}
                 <Button
                   variant="text"
                   onClick={() => setActiveTab(1)}
-                  sx={{ color: "#00a884", textTransform: "none", p: 0, fontWeight: 600 }}
+                  sx={{ color: "#e91e63", textTransform: "none", p: 0, fontWeight: 600 }}
                 >
                   Create an account
                 </Button>
@@ -284,6 +299,10 @@ const LoginDialog = () => {
                 required
                 value={regName}
                 onChange={(e) => setRegName(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <TextField
@@ -295,6 +314,10 @@ const LoginDialog = () => {
                 required
                 value={regEmail}
                 onChange={(e) => setRegEmail(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <TextField
@@ -306,6 +329,10 @@ const LoginDialog = () => {
                 required
                 value={regPassword}
                 onChange={(e) => setRegPassword(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <TextField
@@ -317,6 +344,10 @@ const LoginDialog = () => {
                 required
                 value={regConfirmPassword}
                 onChange={(e) => setRegConfirmPassword(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <TextField
@@ -327,6 +358,10 @@ const LoginDialog = () => {
                 placeholder="https://example.com/avatar.png"
                 value={regPicture}
                 onChange={(e) => setRegPicture(e.target.value)}
+                sx={{
+                  "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#f06292" },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#e91e63" },
+                }}
               />
 
               <Button
@@ -334,24 +369,25 @@ const LoginDialog = () => {
                 variant="contained"
                 disabled={regLoading}
                 sx={{
-                  backgroundColor: "#00a884",
-                  "&:hover": { backgroundColor: "#008f6f" },
+                  backgroundColor: "#e91e63",
+                  "&:hover": { backgroundColor: "#d81b60" },
                   textTransform: "none",
                   py: 1,
                   fontSize: 15,
                   fontWeight: 600,
                   mt: 1,
+                  boxShadow: "0 4px 12px rgba(233, 30, 99, 0.25)",
                 }}
               >
                 {regLoading ? <CircularProgress size={24} color="inherit" /> : "Sign Up & Enter Chat"}
               </Button>
 
-              <Typography variant="body2" sx={{ color: "#667781", textAlign: "center", mt: 0.5 }}>
+              <Typography variant="body2" sx={{ color: "#753447", textAlign: "center", mt: 0.5 }}>
                 Already have an account?{" "}
                 <Button
                   variant="text"
                   onClick={() => setActiveTab(0)}
-                  sx={{ color: "#00a884", textTransform: "none", p: 0, fontWeight: 600 }}
+                  sx={{ color: "#e91e63", textTransform: "none", p: 0, fontWeight: 600 }}
                 >
                   Sign In
                 </Button>
@@ -375,16 +411,12 @@ const LoginDialog = () => {
         {/* Right Side: QR Code, Google Login & Demo Quick Logins */}
         <RightContainer>
           <Box sx={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <img
-              src={qrCodeImage}
-              alt="QR Code"
-              style={{ width: "220px", height: "220px", borderRadius: "8px", border: "1px solid #e9edef" }}
-            />
+            <QRCode src={qrCodeImage} alt="QR Code" />
 
             <Box sx={{ mt: 2.5, width: "100%", maxWidth: "240px", display: "flex", flexDirection: "column", gap: 1 }}>
               <GoogleLogin onSuccess={onGoogleSuccess} onError={(err) => console.log(err)} />
 
-              <Typography variant="caption" sx={{ color: "#8696a0", mt: 1, mb: 0.5 }}>
+              <Typography variant="caption" sx={{ color: "#ad1457", mt: 1, mb: 0.5, fontWeight: 500 }}>
                 ── Or Quick Test Accounts ──
               </Typography>
 
@@ -392,11 +424,11 @@ const LoginDialog = () => {
                 variant="outlined"
                 size="small"
                 sx={{
-                  color: "#00a884",
-                  borderColor: "#00a884",
-                  "&:hover": { borderColor: "#008f6f", backgroundColor: "#f0fbf8" },
+                  color: "#e91e63",
+                  borderColor: "#f48fb1",
+                  "&:hover": { borderColor: "#e91e63", backgroundColor: "#fce4ec" },
                   textTransform: "none",
-                  fontWeight: 500,
+                  fontWeight: 600,
                 }}
                 onClick={() =>
                   onDemoLogin({
@@ -413,11 +445,11 @@ const LoginDialog = () => {
                 variant="outlined"
                 size="small"
                 sx={{
-                  color: "#00a884",
-                  borderColor: "#00a884",
-                  "&:hover": { borderColor: "#008f6f", backgroundColor: "#f0fbf8" },
+                  color: "#e91e63",
+                  borderColor: "#f48fb1",
+                  "&:hover": { borderColor: "#e91e63", backgroundColor: "#fce4ec" },
                   textTransform: "none",
-                  fontWeight: 500,
+                  fontWeight: 600,
                 }}
                 onClick={() =>
                   onDemoLogin({

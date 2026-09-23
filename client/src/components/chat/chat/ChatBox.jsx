@@ -1,34 +1,33 @@
 import { useContext, useEffect, useState } from "react";
-
 import { Box } from "@mui/material";
 
 import { AccountContext } from "../../../context/AccountProvider";
-import {getConversation} from '../../../service/api.js'
+import { getConversation } from "../../../service/api.js";
 
-// components 
+// components
 import ChatHeader from "./ChatHeader";
 import Messages from "./Messages";
 
-const ChatBox = ()=>{
+const ChatBox = () => {
+  const { person, account } = useContext(AccountContext);
+  const [conversation, setConversation] = useState({});
 
-    const {person, account} = useContext(AccountContext);
+  useEffect(() => {
+    const getConversationDetails = async () => {
+      if (account?.sub && person?.sub) {
+        let data = await getConversation({ senderId: account.sub, receiverId: person.sub });
+        setConversation(data);
+      }
+    };
+    getConversationDetails();
+  }, [person.sub, account]);
 
-    const [conversation, setConversation] = useState({});
-
-    useEffect(()=>{
-        const getConversationDetails = async () => {
-            let data = await getConversation({senderId : account.sub, receiverId : person.sub})
-            setConversation(data);
-        }
-        getConversationDetails();
-    }, [person.sub])
-
-    return(
-        <Box style={{height: '75%'}}>
-            <ChatHeader person={person}/>
-            <Messages person={person} conversation={conversation}/>
-        </Box>
-    )
-}
+  return (
+    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+      <ChatHeader person={person} conversation={conversation} />
+      <Messages person={person} conversation={conversation} />
+    </Box>
+  );
+};
 
 export default ChatBox;

@@ -62,14 +62,32 @@ export const newMessage = async (data) => {
   }
 }
 
-export const getMessages = async(id)=>{
+export const getMessages = async (id) => {
   try {
-    let response = await axios.get(`${url}/message/get/${id}`)
+    let response = await axios.get(`${url}/message/get/${id}`);
     return response.data;
   } catch (error) {
-    console.log('Error while calling getMessage api', error.message);
+    console.log("Error while calling getMessage api", error.message);
   }
-}
+};
+
+export const clearMessages = async (id) => {
+  try {
+    let response = await axios.delete(`${url}/message/clear/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log("Error while calling clearMessages api", error.message);
+  }
+};
+
+export const clearAllChats = async () => {
+  try {
+    let response = await axios.delete(`${url}/messages/clear/all`);
+    return response.data;
+  } catch (error) {
+    console.log("Error while calling clearAllChats api", error.message);
+  }
+};
 
 export const uploadFile = async(data)=>{
   try {
