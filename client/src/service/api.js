@@ -2,6 +2,24 @@ import axios from "axios";
 
 const url = "http://localhost:8000";
 
+export const registerUser = async (data) => {
+  try {
+    const response = await axios.post(`${url}/auth/register`, data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Registration failed");
+  }
+};
+
+export const loginUser = async (data) => {
+  try {
+    const response = await axios.post(`${url}/auth/login`, data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Login failed");
+  }
+};
+
 export const addUser = async (data) => {
   try {
     await axios.post(`${url}/add`, data);

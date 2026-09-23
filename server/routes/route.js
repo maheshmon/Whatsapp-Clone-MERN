@@ -1,6 +1,6 @@
 import express from "express";
 
-import { addUser, getUsers } from "../controller/user-controller.js";
+import { addUser, getUsers, registerUser, loginUser } from "../controller/user-controller.js";
 import { newConversation, getConversation } from "../controller/conversation-controller.js";
 import { newMessage, getMessages } from "../controller/message-controller.js";
 import { uploadFile, getImage } from "../controller/image-controller.js";
@@ -9,6 +9,8 @@ import upload from '../utils/upload.js';
 
 const route = express.Router();
 
+route.post("/auth/register", registerUser);
+route.post("/auth/login", loginUser);
 route.post("/add", addUser);
 route.get('/users', getUsers);
 
